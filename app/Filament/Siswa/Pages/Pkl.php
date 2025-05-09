@@ -19,7 +19,7 @@ class Pkl extends Page
 
     public function getData(){
            return User::all();
-    }
+    }//
 
 }
 
