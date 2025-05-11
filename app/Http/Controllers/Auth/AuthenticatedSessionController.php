@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -28,7 +29,20 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        $user = Auth::user();
+
+        if ($user->hasRole('super_admin')) {
+            // dd($user);
+            return redirect('/admin');
+        }
+//fungs intended akan mengembalikkan ke halaman sebelumnya
+//jika kita mengakses /admin dan diarahkan ke login kita akan langsung ke admmin dengan intended
+        if ($user->hasAnyRole(['Siswa','Guru'])) {  
+            return redirect('/dashboard');
+        }
+         
+
+        return redirect()->intended('/'); // fallback
     }
 
     /**
