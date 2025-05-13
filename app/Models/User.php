@@ -18,6 +18,16 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+
+    public function guru()
+    {
+        return $this->hasOne(Guru::class);
+    }
+    public function siswa()
+    {
+        return $this->hasOne(Siswa::class);
+    }
+
     protected $fillable = [
         'name',
         'email',

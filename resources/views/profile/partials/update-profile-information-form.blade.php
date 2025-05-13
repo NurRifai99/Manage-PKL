@@ -12,7 +12,7 @@
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
     </form>
-
+    @if (auth()->user()->hasRole('Guru'))
     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
@@ -45,8 +45,11 @@
                     @endif
                 </div>
             @endif
-        </div>
+        </div> 
 
+        <div class="">
+
+        </div>
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
@@ -61,4 +64,5 @@
             @endif
         </div>
     </form>
+    @endif
 </section>

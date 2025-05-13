@@ -37,10 +37,10 @@ class AuthenticatedSessionController extends Controller
         }
 //fungs intended akan mengembalikkan ke halaman sebelumnya
 //jika kita mengakses /admin dan diarahkan ke login kita akan langsung ke admmin dengan intended
+
         if ($user->hasAnyRole(['Siswa','Guru'])) {  
             return redirect('/dashboard');
         }
-         
 
         return redirect()->intended('/'); // fallback
     }

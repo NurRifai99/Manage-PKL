@@ -15,9 +15,8 @@ class EnsureIsAdmin
      */
     public function handle(Request $request, Closure $next):Response{
         if(auth()->user() && auth()->user()->hasRole('super_admin')==false){
-            session()->flash('error','You are not allowed to access this page');
+            session()->flash('error','You are not allowed to access that shit page');
             return redirect()->back();
-            // abort('403','lol');
         }
         return $next($request);
     }

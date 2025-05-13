@@ -15,6 +15,9 @@ class RedirectIfAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if(auth()->user() && auth()->user()->hasRole('super_admin')) {
+            return redirect('/admin');
+        }
         return $next($request);
     }
 }

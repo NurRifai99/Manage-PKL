@@ -15,6 +15,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use function Laravel\Prompts\search;
 
 class UserResource extends Resource
 {
@@ -63,6 +64,10 @@ class UserResource extends Resource
                     ->label('Email')
                     ->sortable()
                     ->searchable(),
+                TextColumn::make('roles.name')
+                    ->label('Role')
+                    ->searchable(),
+
             ])
             ->filters([
                 //

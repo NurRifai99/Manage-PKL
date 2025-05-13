@@ -16,6 +16,15 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+             @canAny(['view_siswa','view_any_siswa'])
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('siswa')" :active="request()->routeIs('siswa')">
+                      {{ __('Siswa') }}
+                    </x-nav-link>
+                </div>
+            @endcanAny
+
             </div>
 
             <!-- Settings Dropdown -->
